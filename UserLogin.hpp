@@ -44,7 +44,7 @@ void UserLogin::readIn(const string& filename) {
   	{
   		std::string userName, passW;
   		while (inFile >> userName >> passW) {
-  			table.emplace(userName,passW);
+  			table[userName] = passW;
   		}
 
   		inFile.close();  // file closes
@@ -95,7 +95,7 @@ bool UserLogin::authenticateUser(const string& userName, const string& passWord)
 
     std::unordered_map<std::string,std::string>::const_iterator it = table.find (userName);
     std::unordered_map<std::string,std::string>::const_iterator it2 = table.find (passWord);
-    if ((it != table.end() || it2 != table.end()) && (it == it2) ){
+    if ((it != table.end() && (table[userName] == passWord))){
         return true;
     }
     return false;
