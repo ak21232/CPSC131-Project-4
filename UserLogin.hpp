@@ -87,9 +87,7 @@ bool UserLogin::validateUser(const string &userName) {
 bool UserLogin::authenticateUser(const string &userName,
                                  const string &passWord) {
   // Detrmine if username and password exist together in table
-  std::unordered_map<std::string, std::string>::const_iterator it =
-      table.find(userName);
-  if ((it != table.end() && (table[userName] == passWord))) {
+  if (((table[userName] == passWord))) {
     return true;
   }
   return false;
